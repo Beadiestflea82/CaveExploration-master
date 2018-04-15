@@ -13,11 +13,22 @@ public class CameraCast : MonoBehaviour {
     public bool first = true;
     Image Timer;
     bool timer = false;
+    float power=0f;
+    public Color green;
+    public Color orange;
+    public Color violet;
+    Color originalColorGreen;
+    Color originalColorOrange;
+    Color originalcolorViolet;
+
 	// Use this for initialization
 	void Start () {
         Timer = GameObject.Find("Timer").GetComponent<Image>();
         Timer.enabled = false;
-	}
+        originalColorGreen = GameObject.FindGameObjectWithTag("Control1").GetComponent<Renderer>().material.color;
+        originalColorOrange = GameObject.FindGameObjectWithTag("Control2").GetComponent<Renderer>().material.color;
+        originalcolorViolet = GameObject.FindGameObjectWithTag("Control3").GetComponent<Renderer>().material.color;
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -40,9 +51,12 @@ public class CameraCast : MonoBehaviour {
 
                 //Hitting the Control 1 object
                 //Debug.Log("hit Control 1");
+                
+                GameObject.FindGameObjectWithTag("Control1").GetComponent<Renderer>().material.color = green * Mathf.LinearToGammaSpace(power);
+                power += 20f * Time.deltaTime;
 
 
-                if(first)
+                if (first)
                 {
                     StartCoroutine(FadeOut());
                     first = false;
@@ -53,7 +67,7 @@ public class CameraCast : MonoBehaviour {
                 //do a time based check here if we want to wait until we've looked at the orb long enough (eg Volume down ?)
                 if (FadeComplete)
                 {
-                    GameObject.FindGameObjectWithTag("Control1").GetComponentInChildren<Renderer>().material.color = GameObject.FindGameObjectWithTag("Control1").GetComponentInChildren<Renderer>().material.color * Mathf.LinearToGammaSpace(100f);
+                    
                     //now change the song playing
                     if (switchOnlyOncePerLook)
                     {
@@ -76,6 +90,9 @@ public class CameraCast : MonoBehaviour {
 
                 //Hitting the Control 1 object
                 //Debug.Log("hit Control 2");
+               
+                GameObject.FindGameObjectWithTag("Control2").GetComponent<Renderer>().material.color = orange * Mathf.LinearToGammaSpace(power);
+                power += 20f * Time.deltaTime;
 
                 if (first)
                 {
@@ -106,6 +123,9 @@ public class CameraCast : MonoBehaviour {
 
                 //Hitting the Control 1 object
                 //Debug.Log("hit Control 3");
+               
+                GameObject.FindGameObjectWithTag("Control3").GetComponent<Renderer>().material.color = violet * Mathf.LinearToGammaSpace(power);
+                power += 20f * Time.deltaTime;
 
                 if (first)
                 {
@@ -136,6 +156,10 @@ public class CameraCast : MonoBehaviour {
             {
 
                 //Debug.Log("Raycasting at something that is NOT a control orb");
+                GameObject.FindGameObjectWithTag("Control1").GetComponent<Renderer>().material.color = originalColorGreen;
+                GameObject.FindGameObjectWithTag("Control2").GetComponent<Renderer>().material.color = originalColorOrange;
+                GameObject.FindGameObjectWithTag("Control3").GetComponent<Renderer>().material.color = originalcolorViolet;
+                power = 0f;
                 StopAllCoroutines();
                 first = true;
                 switchOnlyOncePerLook = true;
@@ -150,6 +174,11 @@ public class CameraCast : MonoBehaviour {
         {
             //we're not looking at anything
             //Debug.Log("Raycast is not hitting anything");
+            GameObject.FindGameObjectWithTag("Control1").GetComponent<Renderer>().material.color = originalColorGreen;
+            GameObject.FindGameObjectWithTag("Control2").GetComponent<Renderer>().material.color = originalColorOrange;
+            GameObject.FindGameObjectWithTag("Control3").GetComponent<Renderer>().material.color = originalcolorViolet;
+            power =0f;
+
             StopAllCoroutines();
             first = true;
             switchOnlyOncePerLook = true;
