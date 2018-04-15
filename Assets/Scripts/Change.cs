@@ -42,6 +42,7 @@ public class Change : MonoBehaviour {
     }
     IEnumerator FadeOut()
     {
+        Volume = 1f;
         Fade = true;
         yield return new WaitForSeconds(10f);
         AudioPlayer.Stop();

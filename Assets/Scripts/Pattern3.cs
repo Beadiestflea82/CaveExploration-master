@@ -624,8 +624,8 @@ public class Pattern3 : MonoBehaviour {
         yield return new WaitForSeconds(1f);
         GlowingStones[4].GetComponentInChildren<Renderer>().material.color = Color.Lerp(endColorRed * Mathf.LinearToGammaSpace(100f), startColor, t);
 
-        //gameObject.GetComponent<Change>().StartFadeOut();
-
+        gameObject.GetComponent<Change>().StartFadeOut();
+        CurrentPhase = Phase.Reset;
     }
 
     IEnumerator RightStarPattern()

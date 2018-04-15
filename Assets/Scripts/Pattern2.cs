@@ -650,7 +650,7 @@ public class Pattern2 : MonoBehaviour {
         yield return new WaitForSeconds(0.1f);
         GlowingStones[95].GetComponentInChildren<Renderer>().material.color = Color.Lerp(startColor, endColorRed * Mathf.LinearToGammaSpace(100f), t);
 
-        yield return new WaitForSeconds(2.4f);
+        yield return new WaitForSeconds(3f);
         //Second Right String and back string
 
         GlowingStones[30].GetComponentInChildren<Renderer>().material.color = Color.Lerp(startColor, endColorRed * Mathf.LinearToGammaSpace(100f), t);
@@ -1093,8 +1093,8 @@ public class Pattern2 : MonoBehaviour {
         yield return new WaitForSeconds(0.05f);
         GlowingStones[147].GetComponentInChildren<Renderer>().material.color = Color.Lerp(endColorRed * Mathf.LinearToGammaSpace(100f), startColor, t);
 
-        
         gameObject.GetComponent<Change>().StartFadeOut();
+        CurrentPhase = Phase.Reset;
     }
 
 
