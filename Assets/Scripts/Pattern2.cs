@@ -29,14 +29,40 @@ public class Pattern2 : MonoBehaviour {
 
     bool Genereate = false;
     int randomNum = 136;
-    // Use this for initialization
-    void Start () {
-        startTime = Time.time;
-        StartCoroutine(Introduction());
-    }
-	
-	// Update is called once per frame
+
+    public enum Phase { Deactivated, Reactivate, Active, Reset}
+    public Phase CurrentPhase;
+
+
 	void Update () {
+
+        switch (CurrentPhase)
+        {
+            case Phase.Deactivated:
+
+                break;
+
+            case Phase.Reactivate:
+                startTime = Time.time;
+                StartCoroutine(Introduction());
+                CurrentPhase = Phase.Active;
+                break;
+
+            case Phase.Active:
+
+                break;
+
+            case Phase.Reset:
+                StopAllCoroutines();
+                Genereate = false;
+                randomNum = 136;
+                CurrentPhase = Phase.Deactivated;
+                break;
+
+
+        }
+
+        
         if (t < 1)
         {
             t += Time.deltaTime / duration;

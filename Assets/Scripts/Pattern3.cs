@@ -23,7 +23,7 @@ public class Pattern3 : MonoBehaviour {
     public int ColorStateYellow;
     public Color endColorYellow;
 
-    float duration = 5f;
+    float duration = 1f;
     float t = 0f;
 
     bool rightStar = false;
@@ -31,15 +31,38 @@ public class Pattern3 : MonoBehaviour {
     bool backStar = false;
     bool middle = false;
 
-    // Use this for initialization
-    void Start()
-    {
-        startTime = Time.time;
-        StartCoroutine(Introduction());
-    }
+    public enum Phase { Deactivated, Reactivate, Activate, Reset}
+    public Phase CurrentPhase;
 
-    // Update is called once per frame
+
     void Update () {
+
+        switch (CurrentPhase)
+        {
+            case Phase.Deactivated:
+
+                break;
+
+            case Phase.Reactivate:
+                StartCoroutine(Introduction());
+                CurrentPhase = Phase.Activate;
+                startTime = Time.time;
+                break;
+
+            case Phase.Activate:
+                
+                break;
+
+            case Phase.Reset:
+                StopAllCoroutines();
+                rightStar = false;
+                leftStar = false;
+                backStar = false;
+                middle = false;
+                CurrentPhase = Phase.Deactivated;
+                break;
+        }
+
         if (t < 1)
         {
             t += Time.deltaTime / duration;
@@ -601,7 +624,7 @@ public class Pattern3 : MonoBehaviour {
         yield return new WaitForSeconds(1f);
         GlowingStones[4].GetComponentInChildren<Renderer>().material.color = Color.Lerp(endColorRed * Mathf.LinearToGammaSpace(100f), startColor, t);
 
-        gameObject.GetComponent<Change>().StartFadeOut();
+        //gameObject.GetComponent<Change>().StartFadeOut();
 
     }
 

@@ -44,18 +44,45 @@ public class BlinkingStone : MonoBehaviour {
     bool RightShimmer = false;
     bool BackShimmer = false;
     bool stop = false;
-    // Use this for initialization
-    void Start()
-    {
-        
-        startTime = Time.time;
-        StartCoroutine(ColorPattern());
-        GlowingStones[0].GetComponentInChildren<Renderer>().material.color = startColor;
-    }
 
-    // Update is called once per frame
+    public enum Phase { Deactivated, Reactivate, Active, Reset }
+    public Phase CurrentPhase;
+
+   
     void Update()
     {
+        switch(CurrentPhase)
+        {
+            case Phase.Deactivated:
+
+                break;
+
+            case Phase.Reactivate:
+                startTime = Time.time;
+                StartCoroutine(ColorPattern());
+                GlowingStones[0].GetComponentInChildren<Renderer>().material.color = startColor;
+                CurrentPhase = Phase.Active;
+                break;
+
+            case Phase.Active:
+
+                break;
+
+            case Phase.Reset:
+                StopAllCoroutines();
+                ArchMiddleStonesGlow = false;
+                ArchBackStonesGlow = false;
+                ArchLeftStonesGlow = false;
+                ArchRightStonesGlow = false;
+
+                LeftShimmer = false;
+                RightShimmer = false;
+                BackShimmer = false;
+                stop = false;
+                CurrentPhase = Phase.Deactivated;
+                break;
+
+        }
         currentStone = GetComponent<BlinkingStone>().currentStone;
 
         if (t < 1)
@@ -5069,6 +5096,7 @@ public class BlinkingStone : MonoBehaviour {
 
         
         gameObject.GetComponent<Change>().StartFadeOut();
+        CurrentPhase = Phase.Reset;
 
     }
 

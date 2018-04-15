@@ -34,7 +34,7 @@ public class MusicPlayer : MonoBehaviour {
                     StopRoutinesThird();
                     audio.clip = firstSong;
                     audio.Play();
-                    GetComponent<BlinkingStone>().enabled = true;
+                    GetComponent<BlinkingStone>().CurrentPhase = BlinkingStone.Phase.Reactivate;
                     hasJustChanged = false;
                 }
 
@@ -47,7 +47,7 @@ public class MusicPlayer : MonoBehaviour {
                     StopRoutinesThird();
                     audio.clip = secondSong;
                     audio.Play();
-                    GetComponent<Pattern2>().enabled = true;
+                    GetComponent<Pattern2>().CurrentPhase = Pattern2.Phase.Reactivate;
                     hasJustChanged = false;
                 }
                 break;
@@ -59,7 +59,7 @@ public class MusicPlayer : MonoBehaviour {
                     StopRoutinesSecond();
                     audio.clip = thirdSong;
                     audio.Play();
-                    GetComponent<Pattern3>().enabled = true;
+                    GetComponent<Pattern3>().CurrentPhase = Pattern3.Phase.Reactivate;
                     hasJustChanged = false;
                 }
 
@@ -73,30 +73,33 @@ public class MusicPlayer : MonoBehaviour {
 	}
     void StopRoutinesFirst()
     {
-        GetComponent<BlinkingStone>().StopAllCoroutines();
-        foreach(GameObject obj in Cristals)
+        GetComponent<BlinkingStone>().CurrentPhase = BlinkingStone.Phase.Reset;
+        //GetComponent<BlinkingStone>().StopAllCoroutines();
+        foreach (GameObject obj in Cristals)
         {
             obj.GetComponentInChildren<Renderer>().material.color = Color.black;
         }
         
-        GetComponent<BlinkingStone>().enabled = false;
+        //GetComponent<BlinkingStone>().enabled = false;
     }
     void StopRoutinesSecond()
     {
-        GetComponent<Pattern2>().StopAllCoroutines();
+        GetComponent<Pattern2>().CurrentPhase = Pattern2.Phase.Reset;
+        //GetComponent<Pattern2>().StopAllCoroutines();
         foreach (GameObject obj in Cristals)
         {
             obj.GetComponentInChildren<Renderer>().material.color = Color.black;
         }
-        GetComponent<Pattern2>().enabled = false;
+        //GetComponent<Pattern2>().enabled = false;
     }
     void StopRoutinesThird()
     {
-        GetComponent<Pattern3>().StopAllCoroutines();
+        GetComponent<Pattern3>().CurrentPhase = Pattern3.Phase.Reset;
+        //GetComponent<Pattern3>().StopAllCoroutines();
         foreach (GameObject obj in Cristals)
         {
             obj.GetComponentInChildren<Renderer>().material.color = Color.black;
         }
-        GetComponent<Pattern3>().enabled = false;
+        //GetComponent<Pattern3>().enabled = false;
     }
 }
