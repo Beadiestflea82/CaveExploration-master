@@ -35,7 +35,7 @@ public class CameraCast : MonoBehaviour {
 
         if(timer)
         {
-            Timer.fillAmount += 0.23f * Time.deltaTime;
+            Timer.fillAmount += 0.46f * Time.deltaTime;
         }
 
         //Raycast to test if we're looking at a control object
@@ -53,7 +53,7 @@ public class CameraCast : MonoBehaviour {
                 //Debug.Log("hit Control 1");
                 
                 GameObject.FindGameObjectWithTag("Control1").GetComponent<Renderer>().material.color = green * Mathf.LinearToGammaSpace(power);
-                power += 20f * Time.deltaTime;
+                power += 40f * Time.deltaTime;
 
 
                 if (first)
@@ -92,7 +92,7 @@ public class CameraCast : MonoBehaviour {
                 //Debug.Log("hit Control 2");
                
                 GameObject.FindGameObjectWithTag("Control2").GetComponent<Renderer>().material.color = orange * Mathf.LinearToGammaSpace(power);
-                power += 20f * Time.deltaTime;
+                power += 40f * Time.deltaTime;
 
                 if (first)
                 {
@@ -125,7 +125,7 @@ public class CameraCast : MonoBehaviour {
                 //Debug.Log("hit Control 3");
                
                 GameObject.FindGameObjectWithTag("Control3").GetComponent<Renderer>().material.color = violet * Mathf.LinearToGammaSpace(power);
-                power += 20f * Time.deltaTime;
+                power += 40f * Time.deltaTime;
 
                 if (first)
                 {
@@ -200,42 +200,42 @@ public class CameraCast : MonoBehaviour {
         Timer.fillAmount = 0f;
         Volume -= 0.10f ;
         GameObject.Find("PatternManager").GetComponent<AudioSource>().volume = Volume;
-        yield return new WaitForSeconds(.5f);
+        yield return new WaitForSeconds(.25f);
         
         Volume -= 0.10f ;
         GameObject.Find("PatternManager").GetComponent<AudioSource>().volume = Volume;
-        yield return new WaitForSeconds(.5f);
+        yield return new WaitForSeconds(.25f);
         
         Volume -= 0.10f ;
         GameObject.Find("PatternManager").GetComponent<AudioSource>().volume = Volume;
-        yield return new WaitForSeconds(.5f);
+        yield return new WaitForSeconds(.25f);
         
         Volume -= 0.10f ;
         GameObject.Find("PatternManager").GetComponent<AudioSource>().volume = Volume;
-        yield return new WaitForSeconds(.5f);
+        yield return new WaitForSeconds(.25f);
         
         Volume -= 0.1f ;
         GameObject.Find("PatternManager").GetComponent<AudioSource>().volume = Volume;
         Volume -= 0.1f;
         GameObject.Find("PatternManager").GetComponent<AudioSource>().volume = Volume;
-        yield return new WaitForSeconds(.5f);
+        yield return new WaitForSeconds(.25f);
         
         Volume -= 0.1f;
         GameObject.Find("PatternManager").GetComponent<AudioSource>().volume = Volume;
-        yield return new WaitForSeconds(.5f);
+        yield return new WaitForSeconds(.25f);
         
         Volume -= 0.1f;
         GameObject.Find("PatternManager").GetComponent<AudioSource>().volume = Volume;
-        yield return new WaitForSeconds(.5f);
+        yield return new WaitForSeconds(.25f);
         
         Volume -= 0.1f;
         GameObject.Find("PatternManager").GetComponent<AudioSource>().volume = Volume;
-        yield return new WaitForSeconds(.5f);
+        yield return new WaitForSeconds(.25f);
         
         Volume -= 0.1f;
         GameObject.Find("PatternManager").GetComponent<AudioSource>().volume = Volume;
         
-        yield return new WaitForSeconds(.5f);
+        yield return new WaitForSeconds(.25f);
         
         FadeComplete = true;
         GameObject.Find("PatternManager").GetComponent<AudioSource>().Stop();
