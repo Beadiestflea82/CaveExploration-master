@@ -76,7 +76,7 @@ public class CameraCast : MonoBehaviour {
                         mp.hasJustChanged = true;
                         switchOnlyOncePerLook = false;
                         FadeComplete = false;
-
+                        Destroy(hit.transform.gameObject);
                     }
                 }
 
@@ -111,6 +111,7 @@ public class CameraCast : MonoBehaviour {
                         mp.hasJustChanged = true;
                         switchOnlyOncePerLook = false;
                         FadeComplete = false;
+                        Destroy(hit.transform.gameObject);
                     }
                 }
                
@@ -144,6 +145,7 @@ public class CameraCast : MonoBehaviour {
                         mp.hasJustChanged = true;
                         switchOnlyOncePerLook = false;
                         FadeComplete = false;
+                        Destroy(hit.transform.gameObject);
                     }
                 }
                
