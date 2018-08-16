@@ -76,7 +76,7 @@ public class CameraCast : MonoBehaviour {
                         mp.hasJustChanged = true;
                         switchOnlyOncePerLook = false;
                         FadeComplete = false;
-                        Destroy(hit.transform.gameObject);
+                        GameObject.FindGameObjectWithTag("Control1").SetActive(false);
                     }
                 }
 
@@ -112,6 +112,7 @@ public class CameraCast : MonoBehaviour {
                         switchOnlyOncePerLook = false;
                         FadeComplete = false;
                         Destroy(hit.transform.gameObject);
+                        GameObject.FindGameObjectWithTag("Control2").SetActive(false);
                     }
                 }
                
@@ -146,6 +147,7 @@ public class CameraCast : MonoBehaviour {
                         switchOnlyOncePerLook = false;
                         FadeComplete = false;
                         Destroy(hit.transform.gameObject);
+                        GameObject.FindGameObjectWithTag("Control3").SetActive(false);
                     }
                 }
                
